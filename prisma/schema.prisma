@@ -15,15 +15,28 @@ model User {
   profileImageURL String?
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
-  tweets Tweet[]
+  tweets          Tweet[]
+
+  followers Follows[] @relation("follower")
+  following Follows[] @relation("following")
 }
 
 model Tweet {
-  id String @id @default(cuid())
-  content String
-  imageUrl String?
-  author User @relation(fields: [aurthorID],references: [id])
+  id        String   @id @default(cuid())
+  content   String
+  imageUrl  String?
+  author    User     @relation(fields: [aurthorID], references: [id])
   aurthorID String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Follows {
+  follower   User   @relation("follower", fields: [followerId], references: [id])
+  followerId String
+
+  following   User   @relation("following", fields: [followingId], references: [id])
+  followingId String
+
+  @@id([followerId, followingId])
 }
