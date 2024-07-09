@@ -35,12 +35,11 @@ const queries = {
     }
     const allowedImageTypes = [
       "image/jpeg",
-      "png",
-      "gif",
-      "bmp",
-      "webp",
-      "jpeg",
-      "jpg",
+      "image/png",
+      "image/gif",
+      "image/bmp",
+      "image/webp",
+      "image/jpg",
     ];
 
     if (!allowedImageTypes.includes(imageType)) {
